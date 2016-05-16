@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="me.j360.shiro.appclient.servlet.shiro"/>
+    <!-- 凭证匹配器 -->
+    <bean id="loginCredentialsMatcher" class="me.j360.shiro.appclient.servlet.shiro.credentials.LoginHashedCredentialsMatcher">
+
+    </bean>
+    <bean id="whiteListcredentialsMatcher" class="org.apache.shiro.authc.credential.SimpleCredentialsMatcher">
+
+    </bean>
+
+    <!--shiro需要请求服务器数据的服务-->
+    <bean id="shiroAccountService" class="me.j360.shiro.appclient.servlet.shiro.service.ShiroAccountService"></bean>
+    <bean id="shiroAccountDao" class="me.j360.shiro.appclient.servlet.shiro.dao.ShiroAccountDao"></bean>
+
+    <!-- Realm实现 -->
+    <bean id="userRealm" class="me.j360.shiro.appclient.servlet.shiro.realm.UserRealm">
+        <property name="credentialsMatcher" ref="whiteListcredentialsMatcher"/>
+        <property name="cachingEnabled" value="false"/>
+    </bean>
+
+    <!-- 会话管理器 -->
+    <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
+        <property name="sessionValidationSchedulerEnabled" value="false"/>
+    </bean>
+
+    <!-- Subject工厂 -->
+    <bean id="subjectFactory"
+          class="me.j360.shiro.appclient.servlet.shiro.factory.StatelessDefaultSubjectFactory"/>
+
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="realm" ref="userRealm"/>
+        <property name="subjectDAO.sessionStorageEvaluator.sessionStorageEnabled"
+                  value="false"/>
+        <property name="subjectFactory" ref="subjectFactory"/>
+        <property name="sessionManager" ref="sessionManager"/>
+    </bean>
+
+    <!-- 相当于调用SecurityUtils.setSecurityManager(securityManager) -->
+    <bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+        <property name="staticMethod" value="org.apache.shiro.SecurityUtils.setSecurityManager"/>
+        <property name="arguments" ref="securityManager"/>
+    </bean>
+
+    <bean id="statelessAuthcFilter" class="me.j360.shiro.appclient.servlet.shiro.filter.StatelessAuthcFilter" />
+    <bean id="statelessWhiteListFilter" class="me.j360.shiro.appclient.servlet.shiro.filter.StatelessWhiteListAuthcFilter" />
+
+    <!-- Shiro的Web过滤器 -->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <property name="securityManager" ref="securityManager"/>
+        <property name="filters">
+            <util:map>
+                <entry key="appAuthc" value-ref="statelessAuthcFilter"/>
+                <entry key="whiteList" value-ref="statelessWhiteListFilter"/>
+            </util:map>
+        </property>
+        <property name="filterChainDefinitions">
+            <value>
+                /api3/home/ks3/auth = appAuthc
+
+                /static/** = anon
+                /ws/** = anon
+                /m/** = anon
+                /qr/** = anon
+
+                /user/** = anon
+                /discovery/** = anon
+                /im/** = anon
+            </value>
+        </property>
+    </bean>
+    <!--
+    Ant路径通配符支持?、*、**，注意通配符匹配不包括目录分隔符“/”：
+    ?：匹配一个字符，如”/admin?”将匹配/admin1，但不匹配/admin或/admin2；
+    *：匹配零个或多个字符串，如/admin*将匹配/admin、/admin123，但不匹配/admin/1；
+    **：匹配路径中的零个或多个路径，如/admin/**将匹配/admin/a或/admin/a/b。
+    -->
+    <!-- Shiro生命周期处理器-->
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+
+</beans>
