@@ -106,10 +106,9 @@ appName/version/buildVersion/osNumber/osVersion/deviceModel/deviceUUID
 uid	uid
 【注】登录时用户需要拿到对应的userSecret，保存到本地，并且用于token的生成
 
-测试案例
-> 假设数值
-   ```
-
+## 测试案例
+ * 假设数值
+ ```
 private static final String appId1 = "b35d7751bc8ef46b87892a6abcb8f8";
 private static final String appSecret1 = "b35d7751bc8ef46b87892a6abcb8f86ede884481ef2e94aa49a7b48fffd4c13c";
 
@@ -117,7 +116,7 @@ String uid = "20000000";
 String secret = "b35d7751bc8ef46b87892a6abcb8f8";
    ```
 
-> * 用户接口：比如
+* 用户接口：比如
 http://localhost:8080/api3/home/ks3/auth?http_verb=PUT&content_md5=&conent_type&file_name=&date=
 头名称
 值
@@ -127,7 +126,7 @@ token	3d413010dd6b46fc8b4e7859a6a8f9c8829f8be69406089a7c12c6910d5f54e1
 timestamp	1463370349560
 uid	20000000
 
-> * 白名单接口
+* 白名单接口
 http://localhost:8080/api3/home/ks3/auth?http_verb=PUT&content_md5=&conent_type&file_name=&date=
 头名称
 值
@@ -143,3 +142,37 @@ timestamp	1463370349560
  - 注册
  - 发送验证码
  - 忘记密码
+
+## 用户密码生成策略
+```
+//数据库已经保存的加密码
+String enpassword = "b35d7751bc8ef46b87892a6abcb8f86ede884481ef2e94aa49a7b48fffd4c13c";
+//加密算法
+String algorithmName = "SHA-256";
+String publicSalt = "fotoplace";
+//数据库存储的私盐
+String privateSalt = "1ab0889665c8ecf592125f2f3b22d567";
+int hashIterations = 2;
+
+SimpleHash hash = new SimpleHash(algorithmName, password, uid + publicSalt + privateSalt, hashIterations);
+String encodedPassword = hash.toHex();
+//验证密码
+return encodedPassword.equals(encodedPassword);
+
+2.用户私盐和用户的secret生成规则，产生随机的32位值
+String privateSalt = new SecureRandomNumberGenerator().nextBytes().toHex();
+
+String secret = new SecureRandomNumberGenerator().nextBytes().toHex();
+```
+数据库
+```
+CREATE TABLE `user_secret` (
+  `id` bigint(20) NOT NULL,
+  `uid` bigint(20) NOT NULL,
+  `private_salt` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '私盐',
+  `password` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'uid 公盐+私盐 password = password',
+  `secret` varchar(64) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '用户密钥 用户生成动态生成token加密',
+  PRIMARY KEY (`id`),
+  KEY `uid` (`uid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+```

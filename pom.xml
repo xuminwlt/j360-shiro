@@ -10,6 +10,7 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>j360-shiro-appclient</module>
+        <module>j360-shiro-webclient</module>
     </modules>
 
     <properties>
