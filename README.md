@@ -176,3 +176,13 @@ CREATE TABLE `user_secret` (
   KEY `uid` (`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 ```
+
+## webapp-demo
+* j360-shiro-appclient-webapp shiro的用法，自带一个简单的demo
+   - web.xml 添加shiro拦截器
+   - 引入shiro的spring配置文件
+   - 新增一个springmvc的controller
+   - 新增几个用于测试的requestMapping
+   - 分别控制每个url的权限 - 修改servlet-shiro.xml文件
+* 用法：本地直接jetty:run
+   - jetty:run在pom中配置了local的profile会覆盖resources中的文件，只做本地测试需要
