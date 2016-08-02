@@ -184,5 +184,8 @@ CREATE TABLE `user_secret` (
    - 新增一个springmvc的controller
    - 新增几个用于测试的requestMapping
    - 分别控制每个url的权限 - 修改servlet-shiro.xml文件
+
+* 请自行配置相关redis和jdbc datasource配置
+   - root-context.xml 设置jdbc redis等客户端
 * 用法：本地直接jetty:run
    - jetty:run在pom中配置了local的profile会覆盖resources中的文件，只做本地测试需要

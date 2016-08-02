@@ -1,6 +1,5 @@
 package me.j360.shiro.appclient.web;
 
-import com.app.api.Response;
 import lombok.Getter;
 import lombok.Setter;
 

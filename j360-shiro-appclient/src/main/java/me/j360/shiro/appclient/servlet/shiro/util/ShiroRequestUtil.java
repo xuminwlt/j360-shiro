@@ -1,10 +1,10 @@
 package me.j360.shiro.appclient.servlet.shiro.util;
 
-import com.app.core.constants.Constants;
-import com.app.utils.StringUtils;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
+import me.j360.shiro.appclient.core.Constants;
 import me.j360.shiro.appclient.servlet.shiro.dto.ClientAgent;
+import org.apache.commons.lang3.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.*;

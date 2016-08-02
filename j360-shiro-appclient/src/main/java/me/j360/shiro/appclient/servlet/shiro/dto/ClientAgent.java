@@ -1,8 +1,9 @@
 package me.j360.shiro.appclient.servlet.shiro.dto;
 
-import com.app.base.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.io.Serializable;
 
 /**
  * Package: me.j360.shiro.appclient.servlet.shiro.dto
@@ -11,7 +12,7 @@ import lombok.Setter;
  * 说明：
  */
 //表达式：appName/version/buildVersion/osNumber/osVersion/deviceModel/deviceUUID
-public class ClientAgent extends BaseEntity{
+public class ClientAgent implements Serializable{
     @Getter
     @Setter
     private String appName;

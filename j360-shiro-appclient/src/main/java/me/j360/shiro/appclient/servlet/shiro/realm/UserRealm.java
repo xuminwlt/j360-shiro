@@ -1,6 +1,6 @@
 package me.j360.shiro.appclient.servlet.shiro.realm;
 
-import com.app.core.constants.Constants;
+import me.j360.shiro.appclient.core.Constants;
 import me.j360.shiro.appclient.service.redis.ShiroRedisManager;
 import me.j360.shiro.appclient.servlet.shiro.codec.HmacSHA256Utils;
 import me.j360.shiro.appclient.servlet.shiro.credentials.LoginHashedCredentialsMatcher;

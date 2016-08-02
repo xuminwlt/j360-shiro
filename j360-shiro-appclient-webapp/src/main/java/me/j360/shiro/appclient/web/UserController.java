@@ -1,7 +1,5 @@
 package me.j360.shiro.appclient.web;
 
-import com.app.api.Response;
-import com.app.api.RestResponse;
 import me.j360.shiro.appclient.web.request.LoginRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;

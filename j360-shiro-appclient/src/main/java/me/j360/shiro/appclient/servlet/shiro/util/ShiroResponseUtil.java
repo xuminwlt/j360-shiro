@@ -1,6 +1,7 @@
 package me.j360.shiro.appclient.servlet.shiro.util;
 
-import com.app.api.Response;
+
+import me.j360.shiro.appclient.web.Response;
 
 /**
  * Package: me.j360.shiro.appclient.servlet.shiro.util

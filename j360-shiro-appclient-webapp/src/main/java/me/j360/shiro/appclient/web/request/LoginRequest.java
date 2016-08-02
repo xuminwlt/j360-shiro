@@ -1,7 +1,7 @@
 package me.j360.shiro.appclient.web.request;
 
-import com.app.api.Response;
 import me.j360.shiro.appclient.web.Request;
+import me.j360.shiro.appclient.web.Response;
 
 /**
  * Package: me.j360.shiro.appclient.web.request

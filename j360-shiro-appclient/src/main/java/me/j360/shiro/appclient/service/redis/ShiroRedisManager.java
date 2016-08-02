@@ -1,7 +1,7 @@
 package me.j360.shiro.appclient.service.redis;
 
-import com.app.core.redis.JedisTemplate;
 import lombok.extern.slf4j.Slf4j;
+import me.j360.shiro.appclient.core.JedisTemplate;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -25,13 +25,15 @@ public class ShiroRedisManager {
 
     private static final int TTLDAY = 24*60*60;
     private static final int TTLQUART = 15*60;
+
+    //替换成你正在使用的redis客户端
     @Autowired
     private JedisTemplate jedisTemplate;
 
     public boolean compareAndSetAppTimestamp(String appId,String uuid,String timestamp){
         String key = StringUtils.replace(APP_ID_UUID_REQUEST_TIMESTAMP,"$1",appId);
         key = StringUtils.replace(key,"$2",uuid);
-        if(jedisTemplate.existsKey(key)){
+        /*if(jedisTemplate.existsKey(key)){
             String lastTimestamp = jedisTemplate.get(key);
             if(StringUtils.isNotEmpty(lastTimestamp)){
                 long l = Long.parseLong(lastTimestamp);
@@ -42,7 +44,7 @@ public class ShiroRedisManager {
             }
         }
         jedisTemplate.set(key, timestamp);
-        jedisTemplate.setExpire(key,TTLQUART);
+        jedisTemplate.setExpire(key,TTLQUART);*/
         return true;
     }
 
@@ -55,18 +57,18 @@ public class ShiroRedisManager {
      * @return
      */
     public String getUserSecret(long uid){
-        if(jedisTemplate.existsKey(getUserSecretKey(uid))){
+        /*if(jedisTemplate.existsKey(getUserSecretKey(uid))){
             return jedisTemplate.get(getUserSecretKey(uid));
-        }
+        }*/
         return null;
     }
 
     public void setUserSecret(long uid,String secret){
-        jedisTemplate.set(getUserSecretKey(uid),secret);
-        jedisTemplate.setExpire(getUserSecretKey(uid),TTLDAY);
+        //jedisTemplate.set(getUserSecretKey(uid),secret);
+        //jedisTemplate.setExpire(getUserSecretKey(uid),TTLDAY);
     }
 
     public void clearUserSecret(long uid){
-        jedisTemplate.del(getUserSecretKey(uid));
+        //jedisTemplate.del(getUserSecretKey(uid));
     }
 }
