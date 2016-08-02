@@ -1,12 +1,12 @@
 package me.j360.shiro.appclient.servlet.shiro.service;
 
-import com.fotoplace.base.service.redis.ShiroRedisManager;
-import com.fotoplace.servlet.shiro.dao.ShiroAccountDao;
+import me.j360.shiro.appclient.service.redis.ShiroRedisManager;
+import me.j360.shiro.appclient.servlet.shiro.dao.ShiroAccountDao;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
- * Package: com.fotoplace.servlet.shiro.service
+ * Package: me.j360.shiro.appclient.servlet.shiro.service
  * User: min_xu
  * Date: 16/4/20 下午5:00
  * 说明：Shiro获取登录的信息，先写在这里模拟数据，后期需要调用User模块的信息

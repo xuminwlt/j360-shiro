@@ -12,25 +12,6 @@ public class LoginHashedCredentialsMatcher extends HashedCredentialsMatcher {
 
     @Override
     public boolean doCredentialsMatch(AuthenticationToken token, AuthenticationInfo info) {
-        String username = (String)token.getPrincipal();
-        /*String passwordRetryMemCache = CacheConstant.SHIRO_PASSWORD_RETRY + username;   //"passwordRetryCache_"+ username;
-        int time = 1*10*60;
-        //10分钟
-        if(spyMemcachedClient.incr(passwordRetryMemCache,1,1,time) > 10){
-            throw new ExcessiveAttemptsException();
-        }
-        if(spyMemcachedClient.get(passwordRetryMemCache) == null){
-            spyMemcachedClient.set(passwordRetryMemCache, time, "1");
-        }
-        boolean
-            matches = super.doCredentialsMatch(token, info);
-
-        if(matches) {
-            //clear retry count
-            //passwordRetryCache.remove(username);
-            spyMemcachedClient.set(passwordRetryMemCache, time, "1");
-        }
-        return matches;*/
         return false;
     }
 }

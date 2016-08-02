@@ -1,11 +1,11 @@
 package me.j360.shiro.appclient.servlet.shiro.realm;
 
 import com.app.core.constants.Constants;
-import com.fotoplace.base.service.redis.ShiroRedisManager;
-import com.fotoplace.servlet.shiro.codec.HmacSHA256Utils;
-import com.fotoplace.servlet.shiro.credentials.LoginHashedCredentialsMatcher;
-import com.fotoplace.servlet.shiro.service.ShiroAccountService;
-import com.fotoplace.servlet.shiro.util.ShiroRequestUtil;
+import me.j360.shiro.appclient.service.redis.ShiroRedisManager;
+import me.j360.shiro.appclient.servlet.shiro.codec.HmacSHA256Utils;
+import me.j360.shiro.appclient.servlet.shiro.credentials.LoginHashedCredentialsMatcher;
+import me.j360.shiro.appclient.servlet.shiro.service.ShiroAccountService;
+import me.j360.shiro.appclient.servlet.shiro.util.ShiroRequestUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authc.credential.SimpleCredentialsMatcher;
@@ -56,15 +56,12 @@ public class UserRealm extends AuthorizingRealm {
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
         //无状态的审核验证过程
         if(token instanceof StatelessAuthcToken){
-            this.setCredentialsMatcher(whiteListcredentialsMatcher);
             return doGetStatelessAuthcTokenInfo(token);
         }
         if(token instanceof StatelessLoginToken){
-            this.setCredentialsMatcher(loginHashedCredentialsMatcher);
             return doGetStatelessLoginTokenInfo(token);
         }
         if(token instanceof StatelessWhiteListToken){
-            this.setCredentialsMatcher(whiteListcredentialsMatcher);
             return doGetStatelessWhiteListTokenInfo(token);
         }
         return null;

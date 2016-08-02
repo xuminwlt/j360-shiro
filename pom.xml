@@ -11,6 +11,7 @@
     <modules>
         <module>j360-shiro-appclient</module>
         <module>j360-shiro-webclient</module>
+        <module>j360-shiro-appclient-webapp</module>
     </modules>
 
     <properties>

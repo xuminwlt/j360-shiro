@@ -1,6 +1,6 @@
 package me.j360.shiro.appclient.servlet.shiro.filter;
 
-import com.fotoplace.servlet.shiro.util.ShiroResponseUtil;
+import me.j360.shiro.appclient.servlet.shiro.util.ShiroResponseUtil;
 import org.apache.shiro.web.filter.AccessControlFilter;
 
 import javax.servlet.ServletRequest;

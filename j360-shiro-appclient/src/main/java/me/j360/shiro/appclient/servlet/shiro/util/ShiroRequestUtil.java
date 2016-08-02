@@ -2,15 +2,15 @@ package me.j360.shiro.appclient.servlet.shiro.util;
 
 import com.app.core.constants.Constants;
 import com.app.utils.StringUtils;
-import com.fotoplace.servlet.shiro.dto.ClientAgent;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
+import me.j360.shiro.appclient.servlet.shiro.dto.ClientAgent;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
 /**
- * Package: com.fotoplace.servlet.shiro.util
+ * Package: me.j360.shiro.appclient.servlet.shiro.util
  * User: min_xu
  * Date: 16/4/20 下午2:14
  * 说明：Shiro的请求头的信息

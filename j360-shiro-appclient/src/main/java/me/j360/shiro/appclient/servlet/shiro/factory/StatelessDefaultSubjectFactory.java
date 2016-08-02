@@ -5,7 +5,7 @@ import org.apache.shiro.subject.SubjectContext;
 import org.apache.shiro.web.mgt.DefaultWebSubjectFactory;
 
 /**
- * Package: com.fotoplace.servlet.shiro.factory
+ * Package: me.j360.shiro.appclient.servlet.shiro.factory
  * User: min_xu
  * Date: 16/4/18 下午7:27
  * 说明：Subject创建工厂，此处创建无session的Subject

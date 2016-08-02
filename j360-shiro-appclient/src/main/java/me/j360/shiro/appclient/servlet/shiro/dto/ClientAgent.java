@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * Package: com.fotoplace.servlet.shiro.dto
+ * Package: me.j360.shiro.appclient.servlet.shiro.dto
  * User: min_xu
  * Date: 16/5/13 下午4:03
  * 说明：

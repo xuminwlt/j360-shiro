@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 /**
- * Package: com.fotoplace.base.service.redis
+ * Package: me.j360.shiro.appclient.service.redis
  * User: min_xu
  * Date: 16/5/13 下午4:29
  * 说明：

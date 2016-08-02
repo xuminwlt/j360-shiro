@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Map;
 
 /**
- * Package: com.fotoplace.servlet.shiro.dao
+ * Package: me.j360.shiro.appclient.servlet.shiro.dao
  * User: min_xu
  * Date: 16/5/13 下午5:12
  * 说明：
