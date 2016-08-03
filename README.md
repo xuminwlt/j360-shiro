@@ -4,8 +4,9 @@
 shiro在app客户端、html web应用场景的使用
 
 # Module
-shiro-appclient
-shiro-webclient
+ - shiro-appclient
+ - shiro-appclient-webapp
+ - shiro-webclient
 
 
 # 介绍
@@ -85,7 +86,7 @@ clientAgentString = clientAgentString.replaceAll(" \\(.*?\\)", "");
 客户端保存分配的AppId和AppSecret：例如
    ```
 
-private static final String appId1 = "b35d7751bc8ef46b87892a6abcb8f8";
+private static final String appId1 = "b35d7751bc8e123487892a6abcb1234";
 private static final String appSecret1 = "b35d7751bc8ef46b87892a6abcb8f86ede884481ef2e94aa49a7b48fffd4c13c";
    ```
 
@@ -109,11 +110,11 @@ uid	uid
 ## 测试案例
  * 假设数值
  ```
-private static final String appId1 = "b35d7751bc8ef46b87892a6abcb8f8";
-private static final String appSecret1 = "b35d7751bc8ef46b87892a6abcb8f86ede884481ef2e94aa49a7b48fffd4c13c";
+private static final String appId1 = "b35d7751bc8e123487892a6abcb1234";
+private static final String appSecret1 = "b35d7751bc8ef46b878921234cb8f86ede884481ef2e94aa49a7b48fffd4c13c";
 
 String uid = "20000000";
-String secret = "b35d7751bc8ef46b87892a6abcb8f8";
+String secret = "b35d7751bc8e123487892a6abcb1234";
    ```
 
 * 用户接口：比如
@@ -131,7 +132,7 @@ http://localhost:8080/api3/home/ks3/auth?http_verb=PUT&content_md5=&conent_type&
 头名称
 值
 说明
-Client-Agent	b35d7751bc8ef46b87892a6abcb8f8/3.0.4/2/1/9.0.2/6S/a6cf3aaf715844ee9977b0a1e2460c9a
+Client-Agent	b35d7751bc8e123487892a6abcb1234/3.0.4/2/1/9.0.2/6S/a6cf3aaf715844ee9977b0a1e2460c9a
 token
 2cb083955ffc2f97cf49854343c56b439fbd633b4cb8ca9ea28667a97652b016
 
@@ -146,7 +147,7 @@ timestamp	1463370349560
 ## 用户密码生成策略
 ```
 //数据库已经保存的加密码
-String enpassword = "b35d7751bc8ef46b87892a6abcb8f86ede884481ef2e94aa49a7b48fffd4c13c";
+String enpassword = "b35d7751bc8ef46b87892a6abcb8f86e12345481ef2e94aa49a7b48fffd4c13c";
 //加密算法
 String algorithmName = "SHA-256";
 String publicSalt = "fotoplace";
