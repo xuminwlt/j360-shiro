@@ -189,3 +189,42 @@ CREATE TABLE `user_secret` (
    - root-context.xml 设置jdbc redis等客户端
 * 用法：本地直接jetty:run
    - jetty:run在pom中配置了local的profile会覆盖resources中的文件，只做本地测试需要
+
+
+## 其他说明
+* 关于同一个servlet容器如何使用session和nosession的配置中，需要开启servlet-shiro.xml
+```
+<!--使用原生的HttpSession，所有的分享的内容,sessionManager暂不使用-->
+    <bean id="servletContainerSessionManager" class="org.apache.shiro.web.session.mgt.ServletContainerSessionManager"/>
+```
+
+ - 并且注释掉下面的false，同时根据具体的filter标示session的使用
+```
+public class StatelessDefaultSubjectFactory extends DefaultWebSubjectFactory {
+    public Subject createSubject(SubjectContext context) {
+        //不创建session
+        //context.setSessionCreationEnabled(false);
+        return super.createSubject(context);
+    }
+}
+```
+
+ - Filter中的preHandler中做出以下调整，request.setAttribute
+ ```
+ /**
+      * Returns <code>true</code> if
+      * {@link #isAccessAllowed(ServletRequest, ServletResponse,Object) isAccessAllowed(Request,Response,Object)},
+      * otherwise returns the result of
+      * {@link #onAccessDenied(ServletRequest, ServletResponse,Object) onAccessDenied(Request,Response,Object)}.
+      *
+      * @return <code>true</code> if
+      *         {@link #isAccessAllowed(ServletRequest, ServletResponse, Object) isAccessAllowed},
+      *         otherwise returns the result of
+      *         {@link #onAccessDenied(ServletRequest, ServletResponse) onAccessDenied}.
+      * @throws Exception if an error occurs.
+      */
+     public boolean onPreHandle(ServletRequest request, ServletResponse response, Object mappedValue) throws Exception {
+         request.setAttribute(DefaultSubjectContext.SESSION_CREATION_ENABLED, Boolean.FALSE);
+         return isAccessAllowed(request, response, mappedValue) || onAccessDenied(request, response, mappedValue);
+     }
+ ```
