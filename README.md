@@ -38,6 +38,7 @@ appId/version/buildVersion/osNumber/osVersion/deviceModel/deviceUUID
 
 技术实现
 白名单凭证：
+
    ```
 
 定义Map -> appId appUUID timestamp参与token计算
@@ -49,6 +50,7 @@ String token = HmacSHA256Utils.digest(appSecret1, map);
 
 
 用户凭证：
+
    ```
 
 定义Map -> appid appUUID timestamp uid 参与token计算
@@ -65,6 +67,7 @@ appUUID每个终端会在服务器记录本次访问的时间戳 timestamp，同
 接口说明
 客户端接口设计：
 客户端在第一次App打开需要生成一份数据ClientAgent
+
    ```
 
 Client-Agent: Fotoplace/3.1.0/1602/iOS/7.1/iPhone 5s (A1457/A1518/A1528/A1530)/7EAB70B1-624F-463A-943C-E7FF235A9A0C
@@ -84,6 +87,7 @@ clientAgentString = clientAgentString.replaceAll(" \\(.*?\\)", "");
 
 
 客户端保存分配的AppId和AppSecret：例如
+
    ```
 
 private static final String appId1 = "b35d7751bc8e123487892a6abcb1234";
@@ -109,6 +113,7 @@ uid	uid
 
 ## 测试案例
  * 假设数值
+ 
  ```
 private static final String appId1 = "b35d7751bc8e123487892a6abcb1234";
 private static final String appSecret1 = "b35d7751bc8ef46b878921234cb8f86ede884481ef2e94aa49a7b48fffd4c13c";
@@ -145,6 +150,7 @@ timestamp	1463370349560
  - 忘记密码
 
 ## 用户密码生成策略
+
 ```
 //数据库已经保存的加密码
 String enpassword = "b35d7751bc8ef46b87892a6abcb8f86e12345481ef2e94aa49a7b48fffd4c13c";
@@ -166,6 +172,7 @@ String privateSalt = new SecureRandomNumberGenerator().nextBytes().toHex();
 String secret = new SecureRandomNumberGenerator().nextBytes().toHex();
 ```
 数据库
+
 ```
 CREATE TABLE `user_secret` (
   `id` bigint(20) NOT NULL,
@@ -194,12 +201,14 @@ CREATE TABLE `user_secret` (
 
 ## 其他说明
 * 关于同一个servlet容器如何使用session和nosession的配置中，需要开启servlet-shiro.xml
+
 ```
 <!--使用原生的HttpSession，所有的分享的内容,sessionManager暂不使用-->
     <bean id="servletContainerSessionManager" class="org.apache.shiro.web.session.mgt.ServletContainerSessionManager"/>
 ```
 
  - 并且注释掉下面的false，同时根据具体的filter标示session的使用
+ 
 ```
 public class StatelessDefaultSubjectFactory extends DefaultWebSubjectFactory {
     public Subject createSubject(SubjectContext context) {
@@ -211,6 +220,7 @@ public class StatelessDefaultSubjectFactory extends DefaultWebSubjectFactory {
 ```
 
  - Filter中的preHandler中做出以下调整，request.setAttribute
+ 
  ```
  /**
       * Returns <code>true</code> if
@@ -234,11 +244,11 @@ public class StatelessDefaultSubjectFactory extends DefaultWebSubjectFactory {
 ## Web浏览器客户端情况下
 
  * 简单使用模式
- 
- 1. 用户输入网址登录
- 2. 登录后跳转网页1
- 3. 用户退出
- 4. 用户再访问网页1强制跳转到登录界面
+  
+    - 用户输入网址登录
+    - 登录后跳转网页1
+    - 用户退出
+    - 用户再访问网页1强制跳转到登录界面
 
  * 复杂使用模式
   
