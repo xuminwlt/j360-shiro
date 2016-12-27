@@ -229,3 +229,23 @@ public class StatelessDefaultSubjectFactory extends DefaultWebSubjectFactory {
          return isAccessAllowed(request, response, mappedValue) || onAccessDenied(request, response, mappedValue);
      }
  ```
+
+
+## Web浏览器客户端情况下
+
+ * 简单使用模式
+ 
+ 1. 用户输入网址登录
+ 2. 登录后跳转网页1
+ 3. 用户退出
+ 4. 用户再访问网页1强制跳转到登录界面
+
+ * 复杂使用模式
+  
+  - 常规登录
+  - 二维码登录
+  - Oauth2.0授权登录
+  - 多账号体系登录
+  - 鉴权
+  - 自带Oauth2.0API
+  - CAS SSO
