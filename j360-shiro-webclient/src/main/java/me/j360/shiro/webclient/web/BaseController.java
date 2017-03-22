@@ -3,7 +3,7 @@ package me.j360.shiro.webclient.web;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
-import me.j360.shiro.appclient.core.Constants;
+import me.j360.shiro.webclient.core.Constants;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.annotation.Resource;

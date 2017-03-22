@@ -11,4 +11,29 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class JedisTemplate {
 
+
+    public static void set(String key,String value){
+
+    }
+
+    public static void setExpire(String key,int secends){
+
+    }
+
+    public static String get(String key) {
+        return "";
+    }
+
+    public static String hget(String key,String name) {
+        return "";
+    }
+
+    public static void hset(String key, String name, String value) {
+
+    }
+
+    public static void del(String key) {
+
+    }
+
 }

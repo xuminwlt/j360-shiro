@@ -1,8 +1,6 @@
 package me.j360.shiro.webclient.servlet.shiro.realm;
 
 import com.google.common.collect.Sets;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -12,11 +10,7 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
-import org.apache.shiro.web.servlet.ShiroHttpServletRequest;
-import org.apache.shiro.web.subject.WebSubject;
-import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.servlet.ServletRequest;
 import java.util.Set;
 
 public class WebUserRealm extends AuthorizingRealm {
@@ -46,9 +40,9 @@ public class WebUserRealm extends AuthorizingRealm {
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
 
         SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(
-                username, //用户名
-                encodedPassword, //密码 处理后的 admin
-                ByteSource.Util.bytes(username+salt),//salt=username+salt
+                "username", //用户名
+                "encodedPassword", //密码 处理后的 admin
+                ByteSource.Util.bytes("username+salt"),//salt=username+salt
                 getName()  //realm name
         );
 

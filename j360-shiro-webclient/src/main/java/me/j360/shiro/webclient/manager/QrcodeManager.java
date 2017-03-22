@@ -1,6 +1,9 @@
 package me.j360.shiro.webclient.manager;
 
 import me.j360.shiro.webclient.core.JedisTemplate;
+import me.j360.shiro.webclient.dto.QrCodeDto;
+import me.j360.shiro.webclient.dto.QrState;
+import me.j360.shiro.webclient.util.Identities;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

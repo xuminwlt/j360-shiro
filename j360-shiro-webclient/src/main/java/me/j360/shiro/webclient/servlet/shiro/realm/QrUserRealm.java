@@ -1,8 +1,8 @@
 package me.j360.shiro.webclient.servlet.shiro.realm;
 
 import com.google.common.collect.Sets;
+import me.j360.shiro.webclient.servlet.shiro.token.QrToken;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -12,11 +12,7 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
-import org.apache.shiro.web.servlet.ShiroHttpServletRequest;
-import org.apache.shiro.web.subject.WebSubject;
-import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.servlet.ServletRequest;
 import java.util.Set;
 
 public class QrUserRealm extends AuthorizingRealm {
@@ -66,8 +62,8 @@ public class QrUserRealm extends AuthorizingRealm {
 
         SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(
                 username,
-                encodedPassword,
-                ByteSource.Util.bytes(username+salt),
+                "encodedPassword",
+                ByteSource.Util.bytes("username+salt"),
                 getName()
         );
 
@@ -81,7 +77,7 @@ public class QrUserRealm extends AuthorizingRealm {
         QrToken qrToken = (QrToken) token;
         String secret = qrToken.getQrCode();
 
-        String encodedPassword = PasswordUtil.encodedPassword(uid,secret,uid);
+        String encodedPassword = "";//PasswordUtil.encodedPassword(uid,secret,uid);
 
         SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(
                 uid, //用户名
