@@ -64,16 +64,12 @@
         </property>
         <property name="filterChainDefinitions">
             <value>
-                /api3/home/ks3/auth = appAuthc
-
                 /static/** = anon
                 /ws/** = anon
                 /m/** = anon
                 /qr/** = anon
 
                 /user/** = anon
-                /discovery/** = anon
-                /im/** = anon
             </value>
         </property>
     </bean>
