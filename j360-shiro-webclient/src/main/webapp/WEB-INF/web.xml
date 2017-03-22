@@ -1,0 +1,6 @@
+<web-app version="3.0"
+         xmlns="http://java.sun.com/xml/ns/javaee">
+    <display-name>Archetype Created Web Application</display-name>
+
+
+</web-app>
