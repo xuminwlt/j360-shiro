@@ -1,10 +1,10 @@
-package me.j360.shiro.boot.web.shiro;
+package me.j360.shiro.boot;
 
 import org.apache.shiro.crypto.SecureRandomNumberGenerator;
 import org.apache.shiro.crypto.hash.SimpleHash;
 
 
-public class PasswordUtil {
+public abstract class PasswordUtil {
 
     //加密算法
     private static final String algorithmName = "SHA-256";

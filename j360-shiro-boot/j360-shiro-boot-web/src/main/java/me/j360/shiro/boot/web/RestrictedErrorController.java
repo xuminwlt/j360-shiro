@@ -23,7 +23,6 @@ import java.util.Map;
 public class RestrictedErrorController implements ErrorController {
 
     private static final String ERROR_PATH = "/error";
-    private static final String UNAUTH_PATH = "/unauthenticated";
 
     @Autowired
     private ErrorAttributes errorAttributes;

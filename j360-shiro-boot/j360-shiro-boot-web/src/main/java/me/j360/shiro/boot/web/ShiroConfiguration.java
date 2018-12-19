@@ -82,7 +82,7 @@ public class ShiroConfiguration {
         DefaultShiroFilterChainDefinition chainDefinition = new DefaultShiroFilterChainDefinition();
         chainDefinition.addPathDefinition("/login", "authc"); // need to accept POSTs from the login form
         chainDefinition.addPathDefinition("/logout", "logout");
-        chainDefinition.addPathDefinition("/home", "adminAuthenticationFilter");
+        chainDefinition.addPathDefinition("/home", "adminAuthc");
         chainDefinition.addPathDefinition("/unauthenticated", "anon");
         return chainDefinition;
     }
@@ -117,7 +117,7 @@ public class ShiroConfiguration {
         filterFactoryBean.setUnauthorizedUrl("/unauthenticated");
 
         HashMap<String, Filter> filters = Maps.newHashMap();
-        filters.put("adminAuthenticationFilter", adminAuthenticationFilter);
+        filters.put("adminAuthc", adminAuthenticationFilter);
         filterFactoryBean.setFilters(filters);
         filterFactoryBean.setSecurityManager(securityManager);
         filterFactoryBean.setFilterChainDefinitionMap(shiroFilterChainDefinition.getFilterChainMap());

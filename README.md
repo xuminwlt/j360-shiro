@@ -12,7 +12,7 @@ shiro在app客户端、html web应用场景的使用
 # 介绍
 
 > The minimum requirements to run the quick start are: 
->  * JDK 1.7 or above
+>  * JDK 1.8 or above
 >  * A java-based project management software like [Maven][maven] or [Gradle][gradle]
 
 ## 目的
@@ -259,3 +259,18 @@ public class StatelessDefaultSubjectFactory extends DefaultWebSubjectFactory {
   - 鉴权
   - 自带Oauth2.0API
   - CAS SSO
+
+## SpringBoot项目
+
+### Session项目
+  
+springsession + shiro
+
+-  设置:shiro web = true
+
+### 无状态Token项目
+
+jwt + shiro
+
+-  设置:shiro web = false
+  

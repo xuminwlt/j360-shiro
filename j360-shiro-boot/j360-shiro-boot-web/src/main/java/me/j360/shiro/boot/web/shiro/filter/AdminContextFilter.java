@@ -17,7 +17,6 @@ import java.util.Objects;
 @Slf4j
 public class AdminContextFilter extends PathMatchingFilter {
 
-
     protected Subject getSubject(ServletRequest request, ServletResponse response) {
         return SecurityUtils.getSubject();
     }
@@ -27,6 +26,7 @@ public class AdminContextFilter extends PathMatchingFilter {
         Subject subject = getSubject(request, response);
         System.out.println("----->" + subject.getPrincipal() + "<----");
         if (Objects.nonNull(subject.getPrincipal())) {
+            //set context
             //UserDto user = CurrentContext.getCurrentUser();
             //UserContext.setCurrentUid(user.getId());
 

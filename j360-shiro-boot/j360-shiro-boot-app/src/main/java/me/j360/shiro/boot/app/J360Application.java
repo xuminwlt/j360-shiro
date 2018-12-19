@@ -1,4 +1,4 @@
-package me.j360.shiro.boot.web;
+package me.j360.shiro.boot.app;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.SecurityUtils;
@@ -7,12 +7,8 @@ import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
-import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,7 +25,6 @@ import javax.servlet.http.HttpServletRequest;
 
 @Slf4j
 @Controller
-@EnableRedisHttpSession
 @SpringBootApplication
 public class J360Application {
 
@@ -37,25 +32,17 @@ public class J360Application {
         SpringApplication.run(J360Application.class, args);
     }
 
-    @Value("${spring.redis.host}")
-    private String host;
-    @Value("${spring.redis.port}")
-    private int port;
-
-    @Bean
-    public LettuceConnectionFactory connectionFactory() {
-        return new LettuceConnectionFactory(host, port);
-    }
-
     @ResponseBody
     @RequestMapping("/")
     public String home1(HttpServletRequest request, Model model) {
+        System.out.println("---->"+request.getSession().getId() + "<----");
         return "hello";
     }
 
     @ResponseBody
     @RequestMapping("/home")
     public String home(HttpServletRequest request, Model model) {
+        System.out.println("---->home "+request.getSession().getId() + "<----");
         return "hello";
     }
 
@@ -63,6 +50,7 @@ public class J360Application {
     @ResponseBody
     @RequestMapping("/unauthenticated")
     public String unauthenticated(HttpServletRequest request, Model model) {
+        System.out.println("---->unauthenticated "+request.getSession().getId() + "<----");
         //response DEFAULT_ERROR_KEY_ATTRIBUTE_NAME
         System.out.println(request.getAttribute("shiroAuthzFailure").toString());
         return "unauthenticated";
@@ -71,7 +59,8 @@ public class J360Application {
     @ResponseBody
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String login(HttpServletRequest request) {
-        // 建议密码加密传输
+        System.out.println("---->"+request.getSession().getId() + "<----");
+
         // 创建Token
         String username = "username";
         String password = "password";
