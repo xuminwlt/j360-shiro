@@ -7,7 +7,7 @@ shiro在app客户端、html web应用场景的使用
  - shiro-appclient
  - shiro-appclient-webapp
  - shiro-webclient
-
+ - shiro-boot 新增spring boot v2.0+案例
 
 # 介绍
 
