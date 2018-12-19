@@ -15,6 +15,10 @@ shiro在app客户端、html web应用场景的使用
 >  * JDK 1.8 or above
 >  * A java-based project management software like [Maven][maven] or [Gradle][gradle]
 
+# 集成
+
+API验证接口集成swagger文档服务,参考: https://github.com/xuminwlt/j360-swagger
+
 ## 目的
 服务端接口在给客户端提供接口服务时，原则上服务器不信任任何外部调用接口的客户端，需要对外部接口调用者进行身份识别和信任，在接口信任级别上，需要区分非用户级别的白名单接口和需要用户身份识别的会话接口，这里将两者区分，但是不完全隔离，原则上用户身份识别的Token认证基于并高于白名单认证。
 设计说明
@@ -262,6 +266,8 @@ public class StatelessDefaultSubjectFactory extends DefaultWebSubjectFactory {
 
 ## SpringBoot项目
 
+require: spring-boot v2.0+
+
 ### Session项目
   
 springsession + shiro
@@ -273,4 +279,4 @@ springsession + shiro
 jwt + shiro
 
 -  设置:shiro web = false
-  
+ 
