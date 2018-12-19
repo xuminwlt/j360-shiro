@@ -64,7 +64,7 @@
         </property>
         <property name="filterChainDefinitions">
             <value>
-                /api3/home/ks3/auth = appAuthc
+                /api3/home/auth = appAuthc
 
                 /static/** = anon
                 /ws/** = anon
@@ -72,17 +72,9 @@
                 /qr/** = anon
 
                 /user/** = anon
-                /discovery/** = anon
-                /im/** = anon
             </value>
         </property>
     </bean>
-    <!--
-    Ant路径通配符支持?、*、**，注意通配符匹配不包括目录分隔符“/”：
-    ?：匹配一个字符，如”/admin?”将匹配/admin1，但不匹配/admin或/admin2；
-    *：匹配零个或多个字符串，如/admin*将匹配/admin、/admin123，但不匹配/admin/1；
-    **：匹配路径中的零个或多个路径，如/admin/**将匹配/admin/a或/admin/a/b。
-    -->
     <!-- Shiro生命周期处理器-->
     <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
 

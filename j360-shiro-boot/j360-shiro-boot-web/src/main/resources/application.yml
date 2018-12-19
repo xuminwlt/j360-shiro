@@ -36,4 +36,10 @@ logging:
   path: /data/shiro/logs
   level:
     root: DEBUG
-    org.springframework: DEBUG
+    org.springframework: INFO
+
+shiro:
+  web:
+    enabled: true
+  sessionManager:
+    sessionIdUrlRewritingEnabled: false
