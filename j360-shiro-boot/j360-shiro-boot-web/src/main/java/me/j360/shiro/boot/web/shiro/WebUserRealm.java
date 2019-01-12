@@ -2,6 +2,7 @@ package me.j360.shiro.boot.web.shiro;
 
 import com.google.common.collect.Sets;
 import lombok.extern.slf4j.Slf4j;
+import me.j360.shiro.boot.PasswordUtil;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;

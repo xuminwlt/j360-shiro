@@ -4,7 +4,7 @@ import org.apache.shiro.crypto.SecureRandomNumberGenerator;
 import org.apache.shiro.crypto.hash.SimpleHash;
 
 
-public abstract class PasswordUtil {
+public class PasswordUtil {
 
     //加密算法
     private static final String algorithmName = "SHA-256";
