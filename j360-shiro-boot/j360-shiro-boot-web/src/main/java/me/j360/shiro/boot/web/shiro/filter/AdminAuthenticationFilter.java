@@ -30,7 +30,6 @@ public class AdminAuthenticationFilter extends AccessControlFilter {
     @Override
     protected boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue) throws Exception {
         if (isLoginRequest(request, response)) {
-            log.trace("Login request.");
             return true;
         } else {
             // 未认证

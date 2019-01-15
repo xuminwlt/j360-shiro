@@ -14,9 +14,9 @@ spring:
     static-locations: classpath:/META-INF/resources/,classpath:/static/
   session:
     store-type: redis
+    timeout: 0
     redis:
       flush-mode: on-save
-      namespace: s:sess
 
 mybatis:
     type-aliases-package: me.j360.shiro.boot.web
