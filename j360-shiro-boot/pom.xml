@@ -11,7 +11,6 @@
     <packaging>pom</packaging>
     <modules>
         <module>j360-shiro-boot-web</module>
-        <module>j360-shiro-boot-app</module>
         <module>j360-shiro-boot-base</module>
     </modules>
 
@@ -26,7 +25,7 @@
         <project.encoding>UTF-8</project.encoding>
         <mysql.version>6.0.3</mysql.version>
         <com.alibaba.druid.version>1.1.2</com.alibaba.druid.version>
-        <org.redisson.version>3.5.4</org.redisson.version>
+        <org.redisson.version>3.10.0</org.redisson.version>
         <org.mongo-java-driver>3.4.1</org.mongo-java-driver>
         <com.querydsl.mongodb.version>4.1.4</com.querydsl.mongodb.version>
         <org.projectlombok.version>1.16.16</org.projectlombok.version>
